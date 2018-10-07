@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<html>
+<head>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <title>Cloud File Storage</title>
+
+  <script type="text/javascript" src="{% static 'scripts/jQuery1.js' %}"></script>
+  <script type="text/javascript">
+  var rdy = true;
+
+    $(document).ready(function() {
+       $('#topLink').css('display','none');
+    });
+      $(window).scroll(function() {
+        if($(document).scrollTop() > 2) {	// $(window).width() - 550
+            //console.log($(window).width());
+            $('#topLink').fadeIn(500);
+
+        } else {
+            $('#topLink').fadeOut(500);
+        }
+      });
+      $('#topLink').on('click', function() {
+         $('#topLink').css('display','none');
+      });
+
+  </script>
+</head>
+
+<body>
+  <header>
+      <div class="header">
+          <div class="container">
+            <p><a href="{% url 'webpad:pad_list' %}">Home</a></p>
+            <p id="add"><a href="{% url 'webpad:new_pad' %}">Add</a></p>
+            <p id="topLink"><a href="#top">top</a></p>
+          </div>
+      </div>
+  </header>
+  <div class="main">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+
+</html>

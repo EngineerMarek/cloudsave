@@ -1,0 +1,22 @@
+{% extends 'webpad/base.html' %}
+
+{% block content %}
+
+    <script type="text/javascript">
+
+    </script>
+    <div class="container">
+    <span id="top"></span>
+      <div class="pad_list">
+        {% for pad in pads %}
+        <div class="pad_pad">
+          <h2>{{ pad.title }}</h2>
+          <article class="pad_content"> {{ pad.text|linebreaksbr }} </article>
+          <p class="link"><a class="download_a" href= "{{ MEDIA_ROOT }}/media/{{ pad.file }}"><button class="dwnld">Download</button></a></p>
+          <p class="created">{{ pad.created_date }}</p>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+{% endblock %}

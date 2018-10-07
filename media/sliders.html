@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		h1 {
+			display:inline-block;
+			margin-right:30px;
+			width:3%;
+		}
+		#showColor {
+			background-color:rgb(100,100,100);
+			padding:100px;
+			margin:5%;
+		}
+
+		.slider {
+		    -webkit-appearance: none;  /* Override default CSS styles */
+		    appearance: none;
+		    width: 80%; /* Full-width */
+		    height: 30px; /* Specified height */
+		    background-color: #d3d3d3; /* Grey background */
+		    outline: none; /* Remove outline */
+		    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+		    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+		    transition: opacity .2s;
+
+		   	
+		    display:inline-block;
+		}
+		#myRange2 {
+			background-color: red;
+		}
+
+
+
+	</style>
+</head>
+<body>
+	<div class="slidecontainer">
+	  <h1 id="outR" class="valueShow">0</h1> <input type="range" min="0" max="255" value="0" class="slider" id="myRange1"> </br>
+	  <h1 id="outG" class="valueShow">0</h1> <input type="range" min="0" max="255" value="0" class="slider" id="myRange2"> </br>
+	  <h1 id="outB" class="valueShow">0</h1> <input type="range" min="0" max="255" value="0" class="slider" id="myRange3">
+	</div>
+
+	<!--<p><h1 id="outR">0</h1><h1 id="outG">0</h1><h1 id="outB">0</h1></p>-->
+
+	<div id="showColor"></div>
+
+	<h2 id="rgbValue"></h2>
+
+
+	<script type="text/javascript">
+		//String(parseInt(sliderG.value)+parseInt(sliderB.value)+parseInt(sliderY.value));
+
+		var AllSliders = document.getElementsByClassName("slider");
+		var displayBox = document.getElementById("showColor");
+		var rgbValue = document.getElementById("rgbValue");
+
+		var sliderR = document.getElementById("myRange1");
+		var sliderG = document.getElementById("myRange2");
+		var sliderB = document.getElementById("myRange3");
+		
+		var outputR = document.getElementById("outR");
+		var outputG = document.getElementById("outG");
+		var outputB = document.getElementById("outB");
+		
+		outputR.innerHTML =	sliderR.value;
+		outputG.innerHTML = sliderG.value;
+		outputB.innerHTML =	sliderB.value;
+		
+		//"rgb("+String(sliderR)+","+String(sliderG)+","+String(sliderB)+")";
+		// Update the current slider value (each time you drag the slider handle)
+
+		/*
+			"rgb("+String(sliderR.value)
+													 +","+String(sliderG.value)
+													 +","+String(sliderB.value)+")";
+		*/
+
+		window.onLoad=changeColor();
+
+		function changeColor() {
+
+			var ThisColor = "rgb("+String(sliderR.value)
+								  +","+String(sliderG.value)
+								  +","+String(sliderB.value)+")";
+
+			displayBox.style.backgroundColor = ThisColor;
+			rgbValue.innerHTML = ThisColor+";";
+			sliderR.style.backgroundColor = "rgb("+String(sliderR.value)+",0,0";
+			sliderG.style.backgroundColor = "rgb("+"0,"+String(sliderG.value)+",0";
+			sliderB.style.backgroundColor = "rgb("+"0,0,"+String(sliderB.value);
+
+		}
+
+		sliderR.oninput = function() {
+		    outputR.innerHTML = this.value;
+		    changeColor();
+		    this.style.backgroundColor = String(this.value);
+		}
+
+		sliderG.oninput = function() {
+		    outputG.innerHTML = this.value;
+		    changeColor();
+		}
+
+		sliderB.oninput = function() {
+		    outputB.innerHTML = this.value;
+		    changeColor();
+		}		
+	</script>
+</body>
+</html>
